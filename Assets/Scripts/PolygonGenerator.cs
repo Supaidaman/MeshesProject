@@ -25,7 +25,7 @@ public class PolygonGenerator : MonoBehaviour
     // after we make them up we'll save them as this mesh
     private Mesh mesh;
     // Use this for initialization
-
+    
 
     private float tUnit = 0.25f;
     //em que face estou??
@@ -36,7 +36,7 @@ public class PolygonGenerator : MonoBehaviour
     {
 
         mesh = GetComponent<MeshFilter>().mesh;
-
+     
         //float x = transform.position.x;
         //float y = transform.position.y;
         //float z = transform.position.z;
@@ -72,6 +72,8 @@ public class PolygonGenerator : MonoBehaviour
         mesh.uv = newUV.ToArray();
         mesh.Optimize();
         mesh.RecalculateNormals();
+
+      
 
         faceCount = 0;
         newVertices.Clear();
@@ -110,10 +112,18 @@ public class PolygonGenerator : MonoBehaviour
         if (numberOfFloors != 0)
         {
             GenFirstBlock();
+            
             GenFaces();
+
 
         }
         UpdateMesh();
+
+        if (transform.gameObject.GetComponent<MeshCollider>() == null)
+        {
+            transform.gameObject.AddComponent<MeshCollider>();
+            transform.GetComponent<MeshCollider>().sharedMesh = mesh;
+        }
     }
 
     private void addTriangles()

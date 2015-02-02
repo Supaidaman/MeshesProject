@@ -68,6 +68,7 @@ public class PolygonGenerator : MonoBehaviour
         mesh.Clear();
         mesh.vertices = newVertices.ToArray();
         mesh.triangles = newTriangles.ToArray();
+        Debug.Log("vertices.. :" + newVertices.Count + " uvs...: " + newUV.Count );
         mesh.uv = newUV.ToArray();
         mesh.Optimize();
         mesh.RecalculateNormals();
@@ -80,28 +81,28 @@ public class PolygonGenerator : MonoBehaviour
     }
 
 
-    void GenSquare(int x, int y, Vector2 texture)
-    {
-        newVertices.Add(new Vector3(x, y, 0));
-        newVertices.Add(new Vector3(x + 1, y, 0));
-        newVertices.Add(new Vector3(x + 1, y - 1, 0));
-        newVertices.Add(new Vector3(x, y - 1, 0));
+    //void GenSquare(int x, int y, Vector2 texture)
+    //{
+    //    newVertices.Add(new Vector3(x, y, 0));
+    //    newVertices.Add(new Vector3(x + 1, y, 0));
+    //    newVertices.Add(new Vector3(x + 1, y - 1, 0));
+    //    newVertices.Add(new Vector3(x, y - 1, 0));
 
-        newTriangles.Add(faceCount * 4);
-        newTriangles.Add((faceCount * 4) + 1);
-        newTriangles.Add((faceCount * 4) + 3);
-        newTriangles.Add((faceCount * 4) + 1);
-        newTriangles.Add((faceCount * 4) + 2);
-        newTriangles.Add((faceCount * 4) + 3);
+    //    newTriangles.Add(faceCount * 4);
+    //    newTriangles.Add((faceCount * 4) + 1);
+    //    newTriangles.Add((faceCount * 4) + 3);
+    //    newTriangles.Add((faceCount * 4) + 1);
+    //    newTriangles.Add((faceCount * 4) + 2);
+    //    newTriangles.Add((faceCount * 4) + 3);
 
-        newUV.Add(new Vector2(0, 0));
-        newUV.Add(new Vector2(0, 1));
-        newUV.Add(new Vector2(1, 0));
-        newUV.Add(new Vector2(1, 1));
+    //    newUV.Add(new Vector2(0, 0));
+    //    newUV.Add(new Vector2(0, 1));
+    //    newUV.Add(new Vector2(1, 0));
+    //    newUV.Add(new Vector2(1, 1));
 
-        faceCount++;
+    //    faceCount++;
 
-    }
+    //}
 
     // Update is called once per frame
     void Update()
@@ -124,10 +125,14 @@ public class PolygonGenerator : MonoBehaviour
         newTriangles.Add((faceCount * 4) + 2);
         newTriangles.Add((faceCount * 4) + 3);
 
-        newUV.Add(new Vector2(0, 0));
+
+        // para os uvs de cada face...: vejo quem é o topo/fim etc
+        //OU
+        //tento aplicar a ideia do atlas
         newUV.Add(new Vector2(0, 1));
-        newUV.Add(new Vector2(1, 0));
         newUV.Add(new Vector2(1, 1));
+        newUV.Add(new Vector2(1, 0));
+        newUV.Add(new Vector2(0, 0));
     }
 
 
@@ -140,10 +145,10 @@ public class PolygonGenerator : MonoBehaviour
         newTriangles.Add((faceCount * 4) + 3);
         newTriangles.Add((faceCount * 4) + 2);
 
-        newUV.Add(new Vector2(0, 0));
         newUV.Add(new Vector2(0, 1));
-        newUV.Add(new Vector2(1, 0));
         newUV.Add(new Vector2(1, 1));
+        newUV.Add(new Vector2(1, 0));
+        newUV.Add(new Vector2(0, 0));
     }
 
     private void GenFaces()

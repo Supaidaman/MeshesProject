@@ -79,9 +79,9 @@ public class PolygonGenerator : MonoBehaviour
         mesh.Clear();
 
         mesh.vertices = newVertices.ToArray();
-       // Debug.Log("vertices.. :" + newVertices.Count + " uvs...: " + newUV.Count);
+        Debug.Log("vertices.. :" + newVertices.Count + " uvs...: " + newUV.Count);
         mesh.triangles = newTriangles.ToArray();
-      //  Debug.Log("vertices.. :" + newVertices.Count + " uvs...: " + newUV.Count );
+        Debug.Log("vertices.. :" + newVertices.Count + " uvs...: " + newUV.Count );
         
         mesh.uv = newUV.ToArray();
 
@@ -160,7 +160,7 @@ public class PolygonGenerator : MonoBehaviour
         //newUV.Add(new Vector2(0, 0));
     }
 
-    void addUVs()
+    void //addUVs()
     {
         newUV.Add(new Vector2(0, 1));
         newUV.Add(new Vector2(1, 1));

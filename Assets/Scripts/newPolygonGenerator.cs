@@ -34,7 +34,12 @@ public class newPolygonGenerator : MonoBehaviour
     private Vector2 tGrass = new Vector2(0, 1);
     void Start()
     {
-
+        CreateFront front = gameObject.AddComponent<CreateFront>();
+        CreateRight right = gameObject.AddComponent<CreateRight>();
+        CreateLeft left = gameObject.AddComponent<CreateLeft>();
+        CreateBottom bottom = gameObject.AddComponent<CreateBottom>();
+        CreateTop top = gameObject.AddComponent<CreateTop>();
+        CreateBack back = gameObject.AddComponent<CreateBack>();
         mesh = GetComponent<MeshFilter>().mesh;
      
         //float x = transform.position.x;
@@ -126,7 +131,7 @@ public class newPolygonGenerator : MonoBehaviour
     {
         if (numberOfFloors != 0)
         {
-            GenFirstBlock();
+          //  GenFirstBlock();
             
             GenFaces();
 
@@ -186,9 +191,9 @@ public class newPolygonGenerator : MonoBehaviour
 
     private void GenFaces()
     {
-        for (int i = 1; i < numberOfFloors; i++)
+        for (int i = 0; i < numberOfFloors; i++)
         {
-
+            //bottom
             newVertices.Add(new Vector3(start.x - blockWidth / 2, start.y + (blockHeight * i), start.z - blockProf / 2));
             newVertices.Add(new Vector3(start.x + blockWidth / 2, start.y + (blockHeight * i), start.z - -blockProf / 2));
             newVertices.Add(new Vector3(start.x + blockWidth / 2, start.y + (blockHeight * i), start.z + blockProf / 2));

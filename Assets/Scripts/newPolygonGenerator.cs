@@ -34,12 +34,12 @@ public class newPolygonGenerator : MonoBehaviour
     private Vector2 tGrass = new Vector2(0, 1);
     void Start()
     {
-        CreateFront front = gameObject.AddComponent<CreateFront>();
-        CreateRight right = gameObject.AddComponent<CreateRight>();
-        CreateLeft left = gameObject.AddComponent<CreateLeft>();
-        CreateBottom bottom = gameObject.AddComponent<CreateBottom>();
-        CreateTop top = gameObject.AddComponent<CreateTop>();
-        CreateBack back = gameObject.AddComponent<CreateBack>();
+        //CreateFront front = gameObject.AddComponent<CreateFront>();
+        //CreateRight right = gameObject.AddComponent<CreateRight>();
+        //CreateLeft left = gameObject.AddComponent<CreateLeft>();
+        //CreateBottom bottom = gameObject.AddComponent<CreateBottom>();
+        //CreateTop top = gameObject.AddComponent<CreateTop>();
+        //CreateBack back = gameObject.AddComponent<CreateBack>();
         mesh = GetComponent<MeshFilter>().mesh;
      
         //float x = transform.position.x;
@@ -63,13 +63,20 @@ public class newPolygonGenerator : MonoBehaviour
         //newUV.Add(new Vector2(tUnit * tStone.x + tUnit, tUnit * tStone.y + tUnit));
         //newUV.Add(new Vector2(tUnit * tStone.x + tUnit, tUnit * tStone.y));
         //newUV.Add(new Vector2(tUnit * tStone.x, tUnit * tStone.y));
-
+ 
 
 
     }
 
     void UpdateMesh()
     {
+        //Texture tex = renderer.material.GetTexture("_MainTex");
+        //if (tex != null)
+        //{
+            
+        //    Debug.Log(tex.width + " wow wow wow wow " + tex.height);
+        //    renderer.material.mainTextureScale = new Vector2(transform.localScale.x, transform.localScale.y);
+        //}
         //if (newVertices.Count != newUV.Count)
         //{ 
         //    mesh.Clear();
@@ -131,7 +138,7 @@ public class newPolygonGenerator : MonoBehaviour
     {
         if (numberOfFloors != 0)
         {
-          //  GenFirstBlock();
+            GenFirstBlock();
             
             GenFaces();
 
@@ -191,7 +198,7 @@ public class newPolygonGenerator : MonoBehaviour
 
     private void GenFaces()
     {
-        for (int i = 0; i < numberOfFloors; i++)
+        for (int i = 1; i < numberOfFloors; i++)
         {
             //bottom
             newVertices.Add(new Vector3(start.x - blockWidth / 2, start.y + (blockHeight * i), start.z - blockProf / 2));

@@ -153,10 +153,10 @@ public class PolygonGenerator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        UpdateMesh(0);
+       // UpdateMesh(0);
         if (numberOfFloors != 0)
         {
-           // GenFirstBlock();
+            GenFirstBlock();
 
             GenFaces();
 
@@ -212,7 +212,7 @@ public class PolygonGenerator : MonoBehaviour
 
     private void GenFaces()
     {
-        for (int i = 0; i < 1; i++)
+        for (int i = 1; i < numberOfFloors; i++)
         {
             //bottom
             newVertices[0].Add(new Vector3(start.x - blockWidth / 2, start.y + (blockHeight * i), start.z - blockProf / 2));
@@ -293,88 +293,90 @@ public class PolygonGenerator : MonoBehaviour
     }
 
 
-    //private void GenFirstBlock()
-    //{
-    //    //pra criar de ponto qualquer, definir um start point. Primeiro é start, depois é width + start, prof + start, height + start
-    //    //bottom
+    private void GenFirstBlock()
+    {
+        //pra criar de ponto qualquer, definir um start point. Primeiro é start, depois é width + start, prof + start, height + start
+        //bottom
 
-    //    newVertices.Add(new Vector3(start.x - blockWidth / 2, start.y, start.z - blockProf / 2));
-    //    newVertices.Add(new Vector3(start.x + blockWidth / 2, start.y, start.z - blockProf / 2));
-    //    newVertices.Add(new Vector3(start.x + blockWidth / 2, start.y, start.z + blockProf / 2));
-    //    newVertices.Add(new Vector3(start.x - blockWidth / 2, start.y, start.z + blockProf / 2));
+        newVertices[0].Add(new Vector3(start.x - blockWidth / 2, start.y, start.z - blockProf / 2));
+        newVertices[0].Add(new Vector3(start.x + blockWidth / 2, start.y, start.z - blockProf / 2));
+        newVertices[0].Add(new Vector3(start.x + blockWidth / 2, start.y, start.z + blockProf / 2));
+        newVertices[0].Add(new Vector3(start.x - blockWidth / 2, start.y, start.z + blockProf / 2));
 
-    //    //////isso aqui pode ir pra uma função
-    //    addTriangles();
-    //    addUVs();
+        ///PRESTAR ATENÇÃO NO GEN FACES NO PRIMEIRO ROUND NÃO PODE USAR ANTES DE FAZER TRIANGULOS
 
-    //    addReverseTriangles();
-    //    //  //UpdateMesh();
-    //    //  //top
+        //////isso aqui pode ir pra uma função
+        addTriangles(0);
+        addUVs(0);
 
-    //    newVertices.Add(new Vector3(start.x - blockWidth / 2, start.y + blockHeight, start.z - blockProf / 2));
-    //    newVertices.Add(new Vector3(start.x + blockWidth / 2, start.y + blockHeight, start.z - blockProf / 2));
-    //    newVertices.Add(new Vector3(start.x + blockWidth / 2, start.y + blockHeight, start.z + blockProf / 2));
-    //    newVertices.Add(new Vector3(start.x - blockWidth / 2, start.y + blockHeight, start.z + blockProf / 2));
+        addReverseTriangles(0);
+        //UpdateMesh(0);
+        //  //top
 
-    //    faceCount++;
-    //    addReverseTriangles();// -<< virado para cima!
-    //    addUVs();
+        //newVertices.Add(new Vector3(start.x - blockWidth / 2, start.y + blockHeight, start.z - blockProf / 2));
+        //newVertices.Add(new Vector3(start.x + blockWidth / 2, start.y + blockHeight, start.z - blockProf / 2));
+        //newVertices.Add(new Vector3(start.x + blockWidth / 2, start.y + blockHeight, start.z + blockProf / 2));
+        //newVertices.Add(new Vector3(start.x - blockWidth / 2, start.y + blockHeight, start.z + blockProf / 2));
 
-    //    addTriangles();
+        //faceCount++;
+        //addReverseTriangles();// -<< virado para cima!
+        //addUVs();
 
-    //    //  //left
-    //    newVertices.Add(new Vector3(start.x - blockWidth / 2, start.y + blockHeight, start.z - blockProf / 2));
-    //    newVertices.Add(new Vector3(start.x - blockWidth / 2, start.y, start.z - blockProf / 2));
-    //    newVertices.Add(new Vector3(start.x - blockWidth / 2, start.y, start.z + blockProf / 2));
-    //    newVertices.Add(new Vector3(start.x - blockWidth / 2, start.y + blockHeight, start.z + blockProf / 2));
+        //addTriangles();
 
-    //    faceCount++;
-    //    addTriangles();
-    //    addUVs();
+        ////  //left
+        //newVertices.Add(new Vector3(start.x - blockWidth / 2, start.y + blockHeight, start.z - blockProf / 2));
+        //newVertices.Add(new Vector3(start.x - blockWidth / 2, start.y, start.z - blockProf / 2));
+        //newVertices.Add(new Vector3(start.x - blockWidth / 2, start.y, start.z + blockProf / 2));
+        //newVertices.Add(new Vector3(start.x - blockWidth / 2, start.y + blockHeight, start.z + blockProf / 2));
 
-    //    addReverseTriangles();
-    //    //  //throw new System.NotImplementedException();
+        //faceCount++;
+        //addTriangles();
+        //addUVs();
 
-
-    //    //  //right
-    //    newVertices.Add(new Vector3(start.x + blockWidth / 2, start.y + blockHeight, start.z - blockProf / 2));
-    //    newVertices.Add(new Vector3(start.x + blockWidth / 2, start.y, start.z - blockProf / 2));
-    //    newVertices.Add(new Vector3(start.x + blockWidth / 2, start.y, start.z + blockProf / 2));
-    //    newVertices.Add(new Vector3(start.x + blockWidth / 2, start.y + blockHeight, start.z + blockProf / 2));
-
-    //    faceCount++;
-    //    addReverseTriangles();
-    //    addUVs();
-
-    //    addTriangles();
+        //addReverseTriangles();
+        ////  //throw new System.NotImplementedException();
 
 
-    //    //  //front
-    //    newVertices.Add(new Vector3(start.x - blockWidth / 2, start.y, start.z - blockProf / 2));
-    //    newVertices.Add(new Vector3(start.x + blockWidth / 2, start.y, start.z - blockProf / 2));
-    //    newVertices.Add(new Vector3(start.x + blockWidth / 2, start.y + blockHeight, start.z - blockProf / 2));
-    //    newVertices.Add(new Vector3(start.x - blockWidth / 2, start.y + blockHeight, start.z - blockProf / 2));
-    //    faceCount++;
-    //    addReverseTriangles();
-    //    addUVs();
+        ////  //right
+        //newVertices.Add(new Vector3(start.x + blockWidth / 2, start.y + blockHeight, start.z - blockProf / 2));
+        //newVertices.Add(new Vector3(start.x + blockWidth / 2, start.y, start.z - blockProf / 2));
+        //newVertices.Add(new Vector3(start.x + blockWidth / 2, start.y, start.z + blockProf / 2));
+        //newVertices.Add(new Vector3(start.x + blockWidth / 2, start.y + blockHeight, start.z + blockProf / 2));
 
-    //    addTriangles();
+        //faceCount++;
+        //addReverseTriangles();
+        //addUVs();
 
-
-    //    //  //back
-    //    newVertices.Add(new Vector3(start.x - blockWidth / 2, start.y, start.z + blockProf / 2));
-    //    newVertices.Add(new Vector3(start.x + blockWidth / 2, start.y, start.z + blockProf / 2));
-    //    newVertices.Add(new Vector3(start.x + blockWidth / 2, start.y + blockHeight, start.z + blockProf / 2));
-    //    newVertices.Add(new Vector3(start.x - blockWidth / 2, start.y + blockHeight, start.z + blockProf / 2));
-    //    faceCount++;
-    //    addTriangles();
-    //    addUVs();
-
-    //    addReverseTriangles();
+        //addTriangles();
 
 
-    //    ////falta FRONT E BACK que sao identicos
-    //}
+        ////  //front
+        //newVertices.Add(new Vector3(start.x - blockWidth / 2, start.y, start.z - blockProf / 2));
+        //newVertices.Add(new Vector3(start.x + blockWidth / 2, start.y, start.z - blockProf / 2));
+        //newVertices.Add(new Vector3(start.x + blockWidth / 2, start.y + blockHeight, start.z - blockProf / 2));
+        //newVertices.Add(new Vector3(start.x - blockWidth / 2, start.y + blockHeight, start.z - blockProf / 2));
+        //faceCount++;
+        //addReverseTriangles();
+        //addUVs();
+
+        //addTriangles();
+
+
+        ////  //back
+        //newVertices.Add(new Vector3(start.x - blockWidth / 2, start.y, start.z + blockProf / 2));
+        //newVertices.Add(new Vector3(start.x + blockWidth / 2, start.y, start.z + blockProf / 2));
+        //newVertices.Add(new Vector3(start.x + blockWidth / 2, start.y + blockHeight, start.z + blockProf / 2));
+        //newVertices.Add(new Vector3(start.x - blockWidth / 2, start.y + blockHeight, start.z + blockProf / 2));
+        //faceCount++;
+        //addTriangles();
+        //addUVs();
+
+        //addReverseTriangles();
+
+
+        ////falta FRONT E BACK que sao identicos
+    }
 
 
 }

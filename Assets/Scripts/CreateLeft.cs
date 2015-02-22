@@ -20,7 +20,7 @@ public class CreateLeft : SideCreator {
         newVertices.Add(new Vector3(start.x - blockWidth / 2, start.y, start.z + blockProf / 2));
         newVertices.Add(new Vector3(start.x - blockWidth / 2, start.y + blockHeight, start.z + blockProf / 2));
         addTriangles();
-
+        addUVs();
         //addReverseTriangles();
         //}
         //  Update();

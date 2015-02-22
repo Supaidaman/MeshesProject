@@ -23,6 +23,7 @@ public class CreateRight :SideCreator {
         //addTriangles();
 
         addReverseTriangles();
+        addUVs();
         //}
         //  Update();
 

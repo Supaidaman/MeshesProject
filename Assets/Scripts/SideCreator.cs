@@ -59,7 +59,13 @@ public abstract class SideCreator : MonoBehaviour
         //newUV.Add(new Vector2(1, 0));
         //newUV.Add(new Vector2(0, 0));
     }
-
+   protected void addUVs()
+    {
+        newUV.Add(new Vector2(0, 1));
+        newUV.Add(new Vector2(1, 1));
+        newUV.Add(new Vector2(1, 0));
+        newUV.Add(new Vector2(0, 0));
+    }
 
 
     public void Start()

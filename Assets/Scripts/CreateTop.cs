@@ -24,6 +24,7 @@ public class CreateTop : SideCreator {
         //addTriangles();
 
         addReverseTriangles();
+        addUVs();
         //}
         //  Update();
 

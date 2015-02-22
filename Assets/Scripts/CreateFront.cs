@@ -24,6 +24,7 @@ public class CreateFront : SideCreator {
         //addTriangles();
 
         addReverseTriangles();
+        addUVs();
         //}
         //  Update();
 

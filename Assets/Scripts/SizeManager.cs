@@ -6,36 +6,53 @@ using System.Collections.Generic;
 public class SizeManager : MonoBehaviour {
 
     public int blockWidth; public int blockHeight; public int blockProf;
-    private int defWidth=30, defHeight=30, defProf=30, defFloor=30;
-    List<Transform> sides;
+    private int defWidth=5, defHeight=5, defProf=5, defFloor=1;
+
+   public bool hasChanged = false;
+   private int countPasses = 0;
 	// Use this for initialization
 	
     void Awake () {
-        blockWidth = 8;
-        blockHeight = 8;
-        blockProf = 8;
+        defWidth= blockWidth;
+         defHeight= blockHeight;
+        defProf= blockProf;
         
 
 	}
 
-    static bool IsSubclassOfRawGeneric(Type generic, Type toCheck)
-    {
-        while (toCheck != null && toCheck != typeof(object))
-        {
-            var cur = toCheck.IsGenericType ? toCheck.GetGenericTypeDefinition() : toCheck;
-            if (generic == cur)
-            {
-                return true;
-            }
-            toCheck = toCheck.BaseType;
-        }
-        return false;
-    }
-
 
 	// Update is called once per frame
 	void Update () {
-            
-	
+        if ((blockWidth != defWidth) || (blockHeight != defHeight) || (blockProf != defProf))
+        {
+            hasChanged = true;
+            Debug.Log("É diferente!");
+            countPasses++;
+          //return;
+         //   StartCoroutine("timerForChange");
+           // hasChanged = false;
+        }
+        if (countPasses > 7)
+        {
+           //tartCoroutine("timerForChange");
+            defWidth = blockWidth;
+            defHeight = blockHeight;
+            defProf = blockProf;
+            hasChanged = false;
+            countPasses = 0;
+        }
+         // hasChanged = false;
+         //ebug.Log("wow such not changing");
+        
+       
 	}
+
+    IEnumerator timerForChange()
+    {
+
+        Debug.Log("Na corotina...");
+      
+       
+        yield return new WaitForSeconds(0.5f);
+    }
 }

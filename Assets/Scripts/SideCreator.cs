@@ -17,11 +17,12 @@ public abstract class SideCreator : MonoBehaviour
     // Use this for initialization
     public Mesh mesh;
     public MeshFilter mF;
+   
     //GameObject bottomOb;
     int count = 0;
 
     public int blockWidth = 3; public int blockHeight = 3; public int blockProf = 3;
-    public bool hasChanged;
+    public bool hasChanged = false;
     SizeManager sizeManager;
     protected void addTriangles()
     {
@@ -100,6 +101,25 @@ public abstract class SideCreator : MonoBehaviour
         newUV.Clear();
         faceCount = 0;
         Debug.Log("lol");
+       // hasChanged = false;
+    }
+
+    public void Update()
+    {
+        hasChanged = sizeManager.hasChanged;
+        if (hasChanged == true)
+        {
+            Init();
+          //StartCoroutine("timerForChange");
+            //sizeManager.hasChanged = false;
+            //hasChanged = false;
+        }
+    }
+    IEnumerator timerForChange() 
+    {
+     
+        Debug.Log("Na corotina...");
+        yield return new WaitForSeconds(.5f);
     }
 
     public abstract void create(int blockWidth, int blockHeight, int blockProf, Vector3 start, int i, GameObject parent);

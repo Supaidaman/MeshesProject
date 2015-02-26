@@ -89,7 +89,7 @@ public class MeshManager : MonoBehaviour {
     private void GenFirstBlock()
     {
         //(List<Vector3> newVertices,  int blockWidth, int blockHeight, int blockProf, Vector3 start, int i)
-            bottom.create(blockWidth, blockHeight, blockProf, start, 0, gameObject);
+        bottom.create(blockWidth, blockHeight, blockProf, start, 0);
         //throw new System.NotImplementedException();
     }
 }

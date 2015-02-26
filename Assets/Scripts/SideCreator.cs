@@ -13,6 +13,7 @@ public abstract class SideCreator : MonoBehaviour
     // The UV list is unimportant right now but it tells Unity how the texture is
     // aligned on each polygon
     public List<Vector2> newUV = new List<Vector2>();
+    public Vector3 start = new Vector3();
     int faceCount = 0;
     // Use this for initialization
     public Mesh mesh;
@@ -74,6 +75,7 @@ public abstract class SideCreator : MonoBehaviour
         gameObject.AddComponent<MeshFilter>();
         gameObject.AddComponent<MeshRenderer>();
         mesh = GetComponent<MeshFilter>().mesh;
+        
         Init();
     }
 
@@ -84,8 +86,8 @@ public abstract class SideCreator : MonoBehaviour
         blockProf = sizeManager.blockProf;
         blockWidth = sizeManager.blockWidth;
         blockHeight = sizeManager.blockHeight;
-
-        create(blockWidth, blockHeight, blockProf, Vector3.zero, 0, gameObject);
+        start = sizeManager.start;
+        create(blockWidth, blockHeight, blockProf, start, 0);
         Debug.Log("aaaaaaaaaaaaaaaaaaaa " + blockWidth);
         mesh.Clear();
 
@@ -128,6 +130,6 @@ public abstract class SideCreator : MonoBehaviour
         yield return new WaitForSeconds(.5f);
     }
 
-    public abstract void create(int blockWidth, int blockHeight, int blockProf, Vector3 start, int i, GameObject parent);
+    public abstract void create(int blockWidth, int blockHeight, int blockProf, Vector3 start, int i);
 
 }

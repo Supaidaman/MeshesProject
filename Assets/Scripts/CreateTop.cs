@@ -4,10 +4,10 @@ using System.Collections.Generic;
 
 public class CreateTop : SideCreator {
 
-    
-    
-   
-    public override void create(int blockWidth, int blockHeight, int blockProf, Vector3 start, int i, GameObject parent)
+
+
+
+    public override void create(int blockWidth, int blockHeight, int blockProf, Vector3 start, int i)
     {
         //if (count == 0)
         //{
@@ -21,10 +21,11 @@ public class CreateTop : SideCreator {
         newVertices.Add(new Vector3(start.x + blockWidth / 2, start.y + blockHeight, start.z - blockProf / 2));
         newVertices.Add(new Vector3(start.x + blockWidth / 2, start.y + blockHeight, start.z + blockProf / 2));
         newVertices.Add(new Vector3(start.x - blockWidth / 2, start.y + blockHeight, start.z + blockProf / 2));
-        //addTriangles();
+       
 
         addReverseTriangles();
         addUVs();
+        addTriangles();
         //}
         //  Update();
 

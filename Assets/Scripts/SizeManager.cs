@@ -51,13 +51,23 @@ public class SizeManager : MonoBehaviour {
             countPasses = 0;
         }
 
-        if (numberOfFloors!= defFloor)
+        if (numberOfFloors> defFloor)
         {
             //colocar um construtor em casaria...?
+           //como instanciar como criança
             Instantiate(Casaria);
             hasChanged = true;
             defFloor = numberOfFloors;
             start = new Vector3(start.x, start.y + (blockHeight * (numberOfFloors-1)), start.z);
+        }
+        if(numberOfFloors < defFloor)
+        {
+            Destroy(Casaria);
+            hasChanged = true;
+            defFloor = numberOfFloors;
+            start = new Vector3(start.x, start.y + (blockHeight * (numberOfFloors - 1)), start.z);
+        
+
         }
          // hasChanged = false;
          //ebug.Log("wow such not changing");

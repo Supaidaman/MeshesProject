@@ -12,7 +12,7 @@ public class SizeManager : MonoBehaviour {
     private Vector3 defStart = Vector3.zero;
 
    public bool hasChanged = false;
-   private int countPasses = 0;
+   public int countPasses = 0;
    private List<GameObject> listaDeCasarias = new List<GameObject>();
    private bool createNewCasaria;
    public GameObject Casaria;
@@ -55,7 +55,11 @@ public class SizeManager : MonoBehaviour {
         {
             //colocar um construtor em casaria...?
            //como instanciar como criança
-            Instantiate(Casaria);
+           GameObject a = (GameObject)Instantiate(Casaria);
+           a.transform.parent = gameObject.transform;
+           a.name = "Andar" + numberOfFloors;
+          
+           a.GetComponent<SizeManager>().enabled = false;
             hasChanged = true;
             defFloor = numberOfFloors;
             start = new Vector3(start.x, start.y + (blockHeight * (numberOfFloors-1)), start.z);
